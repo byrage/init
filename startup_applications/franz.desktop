@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=franz &
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=franz
+Comment[en_US]=Franz
+X-GNOME-Autostart-Delay=0

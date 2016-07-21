@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=VBoxManage startvm win7
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=win7
+Comment[en_US]=VirtualMachine Window7
+X-GNOME-Autostart-Delay=0

@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=GitKraken
+Comment=Unleash your repo
+GenericName=Demo Application
+Exec=/usr/share/gitkraken/gitkraken %U
+Icon=app
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Development;Documentation;
+MimeType=text/plain;
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=GitKraken
+Comment[en_US]=Unleash your repo
+X-GNOME-Autostart-Delay=0

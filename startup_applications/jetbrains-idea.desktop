@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA
+Icon=/home/hero/.idea/bin/idea.png
+Exec="/home/hero/.idea/bin/idea.sh" %f
+Comment=Develop with pleasure!
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_US]=IntelliJ IDEA
+Comment[en_US]=Develop with pleasure!
+X-GNOME-Autostart-Delay=0
