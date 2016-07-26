@@ -45,8 +45,7 @@ class Initialise
   # intelliJ
   # existCommand idea
   puts `mkdir -p /opt
-        source < (curl -s https://gist.githubusercontent.com/YuriyGuts/a06b5976ccc8434913b9/raw/89e7
-        dec823af878a87aff7aaee5f1ac590366ba1/linux-install-intellij-idea.sh)`
+        source < curl -s https://gist.githubusercontent.com/YuriyGuts/a06b5976ccc8434913b9/raw/89e7dec823af878a87aff7aaee5f1ac590366ba1/linux-install-intellij-idea.sh`
 
   # gradle
   # existCommand gradle
@@ -80,13 +79,13 @@ class Initialise
   # virtual box
   # existCommand vboxmanage
   puts `echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" > /etc/apt/sources.list.d/virtualbox.list && \
-        wget -q https : // www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add - && \
+        wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add - && \
         apt-get update && \
         apt-get -y install virtualbox-5.0`
 
   # chrome
   # existCommand google-chrome
-  puts `wget -q -O - https : // dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
+  puts `wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
         echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
         apt-get update && \
         apt-get -y install google-chrome-stable ttf-unfonts-core`
@@ -98,7 +97,7 @@ class Initialise
   # vim
   puts `apt-get -y install vim`
 
-  # verifiy it
+  # verify it
   puts `ruby verify.rb`
 
 end
