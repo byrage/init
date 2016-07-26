@@ -1,0 +1,60 @@
+
+UIM
+ii  libuim-custom2:amd64                        1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - uim-custom API library
+ii  libuim-data                                 1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - data files
+ii  libuim-scm0:amd64                           1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - uim-scm API library
+ii  libuim8:amd64                               1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - uim library
+ii  uim                                         1:1.8.6-4ubuntu1                                    all          Universal Input Method - metapackage
+ii  uim-applet-gnome                            1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - GNOME applet
+ii  uim-byeoru                                  1:1.8.6-4ubuntu1                                    all          Universal Input Method - byeoru hangul input support
+ii  uim-common                                  1:1.8.6-4ubuntu1                                    all          Universal Input Method - common files
+ii  uim-dict-gtk                                1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - GTK+2.x Japanese dictionary tool
+ii  uim-dict-gtk3                               1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - GTK+3.x Japanese dictionary tool
+ii  uim-fep                                     1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - front end processor
+ii  uim-gtk2.0                                  1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - GTK+2.x front end
+ii  uim-gtk3                                    1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - GTK+3.x front end
+ii  uim-qt                                      1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - Qt 4.x front end
+ii  uim-utils                                   1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - utilities
+ii  uim-xim                                     1:1.8.6-4ubuntu1                                    amd64        Universal Input Method - XIM compatibility interface
+
+CURL
+curl is /usr/bin/curl
+
+GIT
+git is /usr/bin/git
+
+JAVA
+java is /usr/bin/java
+
+MAVEN
+maven: not found
+
+GRADLE
+gradle is /usr/bin/gradle
+
+ATOM
+atom is /usr/bin/atom
+
+TERMINATOR
+terminator is /usr/bin/terminator
+
+DICT
+dict is /usr/bin/dict
+
+DOCKER
+docker is /usr/bin/docker
+
+npm
+npm is /usr/bin/npm
+
+VIRTUAL BOX
+virtualbox is /usr/bin/virtualbox
+
+CHROME-BROWSER
+chrome-browser: not found
+
+TREE
+tree is /usr/bin/tree
+
+VIM
+vim is /usr/bin/vim
