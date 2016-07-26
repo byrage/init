@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-class Initialise
+class Verify
 
   #TODO : remove whitespace in standard output
 
