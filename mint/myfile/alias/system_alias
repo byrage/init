@@ -1,0 +1,7 @@
+#System Aliases
+
+alias ll='ls -lFh'
+alias la='ls -A'
+alias l='ls -CF'
+alias lla='ls -lAFh'
+alias tailF='tail -F'
