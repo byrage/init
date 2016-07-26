@@ -1,65 +1,66 @@
 #!/usr/bin/env ruby
 class Initialise
 
+  #TODO : remove whitespace in standard output
+
   # Korean input method
-  puts `echo 'UIM' >> result`
+  puts `echo '\nUIM' >> result`
   puts `dpkg -l | grep uim >> result`
 
   # basic
-  puts `echo 'CURL' >> result`
-  puts `type curl &>> result`
+  puts `echo '\nCURL' >> result`
+  puts `type curl >> result`
 
   # git
-  puts `echo 'GIT' >> result`
-  puts `type git &>> result`
+  puts `echo '\nGIT' >> result`
+  puts `type git >> result`
 
   # java 8
-  puts `echo 'JAVA' >> result`
-  puts `type java &>> result`
+  puts `echo '\nJAVA' >> result`
+  puts `type java >> result`
 
   # maven
-  puts `echo 'MAVEN' >> result`
-  puts `type maven &>> result`
+  puts `echo '\nMAVEN' >> result`
+  puts `type maven >> result`
 
   # gradle
-  puts `echo 'GRADLE' >> result`
-  puts `type gradle &>> result`
+  puts `echo '\nGRADLE' >> result`
+  puts `type gradle >> result`
 
   # atom editor
-  puts `add-apt-repository -y ppa : webupd8team/atom && \
-        apt-get update && \
-        apt-get -y install atom)`
+  puts `echo '\nATOM' >> result`
+  puts `type atom >> result`
 
   # terminator
-  puts `echo 'TERMINATOR' >> result`
-  puts `type terminator &>> result`
+  puts `echo '\nTERMINATOR' >> result`
+  puts `type terminator >> result`
 
   # english dictionary
-  puts `echo 'DICT' >> result`
-  puts `type dict &>> result`
+  puts `echo '\nDICT' >> result`
+  puts `type dict >> result`
 
   # docker
-  puts `echo 'DOCKER' >> result`
-  puts `type docker &>> result`
+  puts `echo '\nDOCKER' >> result`
+  puts `type docker >> result`
 
   # nodejs, npm
-  puts `echo 'npm' >> result`
-  puts `type npm &>> result`
+  puts `echo '\nnpm' >> result`
+  puts `type npm >> result`
 
   # virtual box
-  puts `echo 'VIRTUAL BOX' >> result`
-  puts `type virtualbox &>> result`
+  puts `echo '\nVIRTUAL BOX' >> result`
+  puts `type virtualbox >> result`
 
   # chrome
-  puts `echo 'CHROME-BROWSER' >> result`
-  puts `type chrome-browser &>> result`
+  puts `echo '\nCHROME-BROWSER' >> result`
+  puts `type chrome-browser >> result`
 
   # tree
-  puts `echo 'TREE' >> result`
-  puts `type tree &>> result`
+  puts `echo '\nTREE' >> result`
+  puts `type tree >> result`
 
   # vim
-  puts `echo 'VIM' >> result`
-  puts `type vim &>> result`
+  puts `echo '\nVIM' >> result`
+  puts `type vim >> result`
 
 end
