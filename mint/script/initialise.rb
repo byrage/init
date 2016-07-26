@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 class Initialise
 
-  puts `set -e`
+  # TODO : search 'set' command to do, and fix it
+  # puts `set -e`
 
-  #TODO : convert existCommand to ruby
+  # TODO : convert existCommand to ruby
   def self.existCommand(command)
     puts `echo exists? "#{command}"`
     puts `type "#{command}" &> /dev/null`
@@ -20,7 +21,7 @@ class Initialise
   puts `apt-get -y install uim uim-byeoru`
 
   # basic
-  # existCommand(curl)
+  # existCommand curl
   puts `apt-get -y install curl`
 
   # git
@@ -44,7 +45,7 @@ class Initialise
   # intelliJ
   # existCommand idea
   puts `mkdir -p /opt
-        source <(curl -s https://gist.githubusercontent.com/YuriyGuts/a06b5976ccc8434913b9/raw/89e7
+        source < (curl -s https://gist.githubusercontent.com/YuriyGuts/a06b5976ccc8434913b9/raw/89e7
         dec823af878a87aff7aaee5f1ac590366ba1/linux-install-intellij-idea.sh)`
 
   # gradle
