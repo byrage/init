@@ -31,14 +31,14 @@ class Initialise
   # java 8
   puts `[ -d "/usr/lib/jvm/java-8-oracle" ] || (\
         echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-        add-apt-repository -y ppa : webupd8team/java && \
+        add-apt-repository -y ppa:webupd8team/java && \
         apt-get update && \
         apt-get install -y oracle-java8-installer oracle-java8-set-default && \
         echo 'export JAVA_HOME=/usr/lib/jvm/java-8-oracle/' >> /etc/profile)`
 
   # maven
   # existCommand mvn
-  puts `apt-add-repository -y ppa : andrei-pozolotin/maven3 && \
+  puts `apt-add-repository -y ppa:andrei-pozolotin/maven3 && \
         apt-get update && \
         apt-get -y install maven3`
 
@@ -49,14 +49,14 @@ class Initialise
 
   # gradle
   # existCommand gradle
-  puts `add-apt-repository -y ppa : cwchien/gradle && \
+  puts `add-apt-repository -y ppa:cwchien/gradle && \
         apt-get update && \
         apt-get -y install gradle && \
         echo 'export GRADLE_HOME=/usr/lib/gradle/default' >> /etc/profile`
 
   # atom editor
   # existCommand atom
-  puts `add-apt-repository -y ppa : webupd8team/atom && \
+  puts `add-apt-repository -y ppa:webupd8team/atom && \
         apt-get update && \
         apt-get -y install atom`
 
