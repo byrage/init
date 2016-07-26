@@ -54,13 +54,6 @@ class Initialise
         apt-get -y install gradle && \
         echo 'export GRADLE_HOME=/usr/lib/gradle/default' >> /etc/profile)`
 
-  # ruby
-  # existCommand rvm
-  puts `gpg --keyserver hkp : // keys.gnupg.net --recv-keys 409 B6B1796C275462A1703113804BB82D39DC0E3 && \
-        curl -sSL https : // get.rvm.io | bash -s stable && \
-        source /etc/profile.d/rvm.sh && \
-        rvm install jruby-9.0 .4 .0)`
-
   # atom editor
   # existCommand atom
   puts `add-apt-repository -y ppa : webupd8team/atom && \
@@ -100,5 +93,8 @@ class Initialise
   # tree
   # existCommand tree
   puts `apt-get -y install tree`
+
+  # vim
+
 
 end
