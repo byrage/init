@@ -37,9 +37,9 @@ class Initialise
 
   # maven
   # existCommand mvn
-  puts `(apt-add-repository -y ppa : andrei-pozolotin/maven3 && \
+  puts `apt-add-repository -y ppa : andrei-pozolotin/maven3 && \
         apt-get update && \
-        apt-get -y install maven3)`
+        apt-get -y install maven3`
 
   # intelliJ
   # existCommand idea
@@ -52,13 +52,13 @@ class Initialise
   puts `add-apt-repository -y ppa : cwchien/gradle && \
         apt-get update && \
         apt-get -y install gradle && \
-        echo 'export GRADLE_HOME=/usr/lib/gradle/default' >> /etc/profile)`
+        echo 'export GRADLE_HOME=/usr/lib/gradle/default' >> /etc/profile`
 
   # atom editor
   # existCommand atom
   puts `add-apt-repository -y ppa : webupd8team/atom && \
         apt-get update && \
-        apt-get -y install atom)`
+        apt-get -y install atom`
 
   # terminator
   # existCommand terminator
@@ -81,14 +81,14 @@ class Initialise
   puts `echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" > /etc/ apt/sources.list.d/virtualbox.list && \
         wget -q https : // www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add - && \
         apt-get update && \
-        apt-get -y install virtualbox-5.0)`
+        apt-get -y install virtualbox-5.0`
 
   # chrome
   # existCommand google-chrome
   puts `wget -q -O - https : // dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
         echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/ apt/sources.list.d/google-chrome.list && \
         apt-get update && \
-        apt-get -y install google-chrome-stable ttf-unfonts-core)`
+        apt-get -y install google-chrome-stable ttf-unfonts-core`
 
   # tree
   # existCommand tree
