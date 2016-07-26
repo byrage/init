@@ -96,6 +96,9 @@ class Initialise
   puts `apt-get -y install tree`
 
   # vim
+  puts `apt-get -y install vim`
 
+  # verifiy it
+  puts `ruby verify.rb`
 
 end
