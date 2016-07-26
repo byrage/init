@@ -28,7 +28,7 @@ class Initialise
   puts `apt-get -y install git git-flow`
 
   # java 8
-  puts `[-d "/usr/lib/jvm/java-8-oracle"] || (\
+  puts `[ -d "/usr/lib/jvm/java-8-oracle" ] || (\
         echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
         add-apt-repository -y ppa : webupd8team/java && \
         apt-get update && \
