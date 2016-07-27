@@ -96,6 +96,29 @@ class Initialise
   # vim
   puts `apt-get -y install vim`
 
+  # wps office
+  puts `wget -O wps-office.deb http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_i386.deb \
+        sudo dpkg -i wps-office.deb \
+        sudo apt-get -f install && rm wps-office.deb \
+        wget -O web-office-fonts.deb http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_amd64.deb \
+        sudo dpkg -i web-office-fonts.deb`
+
+  # double commander
+  puts `sudo add-apt-repository ppa:alexx2000/doublecmd \
+        sudo apt-get update \
+        sudo apt-get install doublecmd-qt`
+
+  # redis
+  puts `sudo apt-get install redis-server`
+
+  # mysql
+  puts `sudo apt-get install mysql-server mysql-client`
+
+  # mysql workbench
+  puts `wget http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.3.7-1ubu1604-amd64.deb \
+        dpkg -i mysql-workbench-community-6.3.7-1ubu1604-amd64.deb`
+
+
   # verify it
   puts `ruby verify.rb`
 

@@ -50,6 +50,21 @@ class Verify
   # vim
   verifyInstallation 'vim'
 
+  # wps office
+  verifyInstallation 'wps office', 'wps'
+
+  # double commander
+  verifyInstallation 'double commander', 'doublecmd'
+
+  # redis
+  verifyInstallation 'redis', 'redis-server'
+
+  # mysql
+  verifyInstallation 'mysql'
+
+  # mysql workbench
+  verifyInstallation 'mysql-workbench'
+
   # Korean input method
   puts `echo '\nUIM' | tee -a "#{@log}"`
   puts `dpkg -l | grep uim | tee -a "#{@log}"`

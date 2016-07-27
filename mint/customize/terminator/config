@@ -1,0 +1,52 @@
+[global_config]
+  suppress_multiple_term_dialog = True
+  title_inactive_bg_color = "#cdcdcd"
+[keybindings]
+[profiles]
+  [[default]]
+    background_image = None
+    foreground_color = "#2fb22f"
+[layouts]
+  [[default]]
+    [[[child0]]]
+      position = 1920:0
+      type = Window
+      order = 0
+      parent = ""
+      size = 1920, 1053
+    [[[child1]]]
+      position = 960
+      type = HPaned
+      order = 0
+      parent = child0
+    [[[child2]]]
+      position = 526
+      type = VPaned
+      order = 0
+      parent = child1
+    [[[child5]]]
+      position = 526
+      type = VPaned
+      order = 1
+      parent = child1
+    [[[terminal3]]]
+      profile = default
+      type = Terminal
+      order = 0
+      parent = child2
+    [[[terminal4]]]
+      profile = default
+      type = Terminal
+      order = 1
+      parent = child2
+    [[[terminal7]]]
+      profile = default
+      type = Terminal
+      order = 1
+      parent = child5
+    [[[terminal6]]]
+      profile = default
+      type = Terminal
+      order = 0
+      parent = child5
+[plugins]
