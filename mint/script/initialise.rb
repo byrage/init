@@ -1,15 +1,6 @@
 #!/usr/bin/env ruby
 class Initialise
 
-  # TODO : search 'set' command to do, and fix it
-  # puts `set -e`
-
-  # TODO : convert existCommand to ruby
-  def self.existCommand(command)
-    puts `echo exists? "#{command}"`
-    puts `type "#{command}" &> /dev/null`
-  end
-
   # use mirror
   puts `perl -pi -e "s/packages.linuxmint.com/ftp.kaist.ac.kr\/linuxmint/g" /etc/apt/sources.list.d/official-package-repositories.list`
   puts `perl -pi -e "s/archive.ubuntu.com/ftp.daum.net/g" /etc/apt/sources.list.d/official-package-repositories.list`
@@ -117,7 +108,6 @@ class Initialise
   # mysql workbench
   puts `wget http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.3.7-1ubu1604-amd64.deb \
         dpkg -i mysql-workbench-community-6.3.7-1ubu1604-amd64.deb`
-
 
   # verify it
   puts `ruby verify.rb`
