@@ -28,22 +28,36 @@ class Customize
   puts 'homeDirectory = '+homeDirectory
   puts 'myFile = '+myFile
 
-  autoStart = [myFile + 'startup_applications/.', homeDirectory+'/.config/autostart']
-  aliases = [myFile + 'alias/*', homeDirectory, '/.profile'] # .profile
-  vim = [myFile + '/vim/vimrc', homeDirectory, '/.vimrc'] # .vimrc
-  dconf = myFile + '/dconf/dconf-settings.conf'
 
   # set preferred application
+  autoStart = [myFile + 'startup_applications/.', homeDirectory+'/.config/autostart']
   copy autoStart[0], autoStart[1]
   puts `chown -R "#{userId}":"#{userId}" "#{autoStart[1]}"`
 
   # set custom aliases
+  aliases = [myFile + 'alias/*', homeDirectory, '/.profile'] # .profile
   catAndAppend aliases[0], aliases[1], aliases[2]
 
   # set vim configuration
+  vim = [myFile + '/vim/vimrc', homeDirectory, '/.vimrc'] # .vimrc
   catAndAppend vim[0], vim[1], vim[2]
 
   # set mint shortcut
+  dconf = myFile + '/dconf/dconf-settings.conf'
   puts `apt install dconf-cli`
   puts `dconf load /org/cinnamon/desktop/keybindings/ < "#{dconf}"`
+
+  # set git alias
+  puts `git config --global alias.co checkout`
+  puts `git config --global alias.br branch -v`
+  puts `git config --global alias.ci commit`
+  puts `git config --global alias.st status`
+  puts `git config --global alias.ammend commit --amend`
+  puts `git config --global alias.unstage reset HEAD --`
+  puts `git config --global alias.last log -1 HEAD`
+
+  # set terminator configuration
+  terminator = [myFile + '/terminator/config', homeDirectory+'/.config/terminator']
+  copy terminator[0], terminator[1]
+
 end
