@@ -40,7 +40,7 @@ class Initialise
   # existCommand mvn
   puts `apt-add-repository -y ppa:andrei-pozolotin/maven3 && \
         apt-get update && \
-        apt-get -y install maven3`
+        apt install maven3`
 
   # intelliJ
   # existCommand idea
@@ -56,9 +56,9 @@ class Initialise
 
   # atom editor
   # existCommand atom
-  puts `add-apt-repository -y ppa:webupd8team/atom && \
-        apt-get update && \
-        apt-get -y install atom`
+  puts `wget https://atom.io/download/deb atom.deb \
+        dpkg -i deb \
+        rm deb`
 
   # terminator
   # existCommand terminator
@@ -85,10 +85,9 @@ class Initialise
 
   # chrome
   # existCommand google-chrome
-  puts `wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
-        echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
-        apt-get update && \
-        apt-get -y install google-chrome-stable ttf-unfonts-core`
+  puts `wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+        dpkg -i google-chrome-stable_current_amd64.deb \
+        apt-get -y install ttf-unfonts-core`
 
   # tree
   # existCommand tree

@@ -1,66 +1,57 @@
 #!/usr/bin/env ruby
 class Verify
 
-  #TODO : remove whitespace in standard output
+  @log = 'verify.log'
 
-  # Korean input method
-  puts `echo '\nUIM' >> result`
-  puts `dpkg -l | grep uim >> result`
+  def self.verifyInstallation(package, command=package)
+    puts `echo '\n'"#{package.upcase}" | tee -a "#{@log}"`
+    puts `type "#{command}" | tee -a "#{@log}"`
+  end
 
-  # basic
-  puts `echo '\nCURL' >> result`
-  puts `type curl >> result`
+  # curl
+  verifyInstallation 'curl'
 
   # git
-  puts `echo '\nGIT' >> result`
-  puts `type git >> result`
+  verifyInstallation 'git'
 
   # java 8
-  puts `echo '\nJAVA' >> result`
-  puts `type java >> result`
+  verifyInstallation 'java'
 
   # maven
-  puts `echo '\nMAVEN' >> result`
-  puts `type maven >> result`
+  verifyInstallation 'maven', 'mvn'
 
   # gradle
-  puts `echo '\nGRADLE' >> result`
-  puts `type gradle >> result`
+  verifyInstallation 'gradle'
 
   # atom editor
-  puts `echo '\nATOM' >> result`
-  puts `type atom >> result`
+  verifyInstallation 'atom'
 
   # terminator
-  puts `echo '\nTERMINATOR' >> result`
-  puts `type terminator >> result`
+  verifyInstallation 'terminator'
 
   # english dictionary
-  puts `echo '\nDICT' >> result`
-  puts `type dict >> result`
+  verifyInstallation 'dict'
 
   # docker
-  puts `echo '\nDOCKER' >> result`
-  puts `type docker >> result`
+  verifyInstallation 'docker'
 
   # nodejs, npm
-  puts `echo '\nnpm' >> result`
-  puts `type npm >> result`
+  verifyInstallation 'npm'
 
   # virtual box
-  puts `echo '\nVIRTUAL BOX' >> result`
-  puts `type virtualbox >> result`
+  verifyInstallation 'virtualbox'
 
   # chrome
-  puts `echo '\nCHROME-BROWSER' >> result`
-  puts `type chrome-browser >> result`
+  verifyInstallation 'chrome', 'google-chrome-stable'
 
   # tree
-  puts `echo '\nTREE' >> result`
-  puts `type tree >> result`
+  verifyInstallation 'tree'
 
   # vim
-  puts `echo '\nVIM' >> result`
-  puts `type vim >> result`
+  verifyInstallation 'vim'
+
+  # Korean input method
+  puts `echo '\nUIM' | tee -a "#{@log}"`
+  puts `dpkg -l | grep uim | tee -a "#{@log}"`
 
 end
