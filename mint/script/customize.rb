@@ -19,29 +19,29 @@ class Customize
     puts `cat #{src} >> #{dst+fileName}`
   end
 
-  puts('input your id : ')
-  # userId = gets.chomp
-  userId = 'hero'
-  homeDirectory = '/home/'+userId+'/test'
+  print 'input your id : '
+  userId = gets.chomp
+  homeDirectory = '/home/'+userId
   absolutePath = Dir.pwd
-  myFile =absolutePath.split('/script')[0] + '/myfile/'
+  myFile =absolutePath.split('/script')[0] + '/customize/'
 
-  puts('homeDirectory = '+homeDirectory)
-  puts('myFile = '+myFile)
+  puts 'homeDirectory = '+homeDirectory
+  puts 'myFile = '+myFile
 
-  autoStart = [myFile + 'startup_applications/.', homeDirectory+'/config/autostart']
-  aliases = [myFile + 'alias/*', homeDirectory, '/profile'] # .profile
-  vim = [myFile + '/vim/vimrc', homeDirectory, '/vimrc'] # .vimrc
+  autoStart = [myFile + 'startup_applications/.', homeDirectory+'/.config/autostart']
+  aliases = [myFile + 'alias/*', homeDirectory, '/.profile'] # .profile
+  vim = [myFile + '/vim/vimrc', homeDirectory, '/.vimrc'] # .vimrc
   dconf = myFile + '/dconf/dconf-settings.conf'
 
   # set preferred application
-  copy(autoStart[0], autoStart[1])
+  copy autoStart[0], autoStart[1]
+  puts `chown -R "#{userId}":"#{userId}" "#{autoStart[1]}"`
 
   # set custom aliases
-  catAndAppend(aliases[0], aliases[1], aliases[2])
+  catAndAppend aliases[0], aliases[1], aliases[2]
 
   # set vim configuration
-  catAndAppend(vim[0], vim[1], vim[2])
+  catAndAppend vim[0], vim[1], vim[2]
 
   # set mint shortcut
   puts `apt install dconf-cli`
