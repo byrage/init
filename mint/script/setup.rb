@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
-class Initialise
+class Setup
+
+  # TODO : make method
+  # echo "installing {package} ..."
 
   # use mirror
   puts `perl -pi -e "s/packages.linuxmint.com/ftp.kaist.ac.kr\/linuxmint/g" /etc/apt/sources.list.d/official-package-repositories.list`
@@ -35,8 +38,8 @@ class Initialise
 
   # intelliJ
   # existCommand idea
-  puts `mkdir -p /opt
-        source < curl -s https://gist.githubusercontent.com/YuriyGuts/a06b5976ccc8434913b9/raw/89e7dec823af878a87aff7aaee5f1ac590366ba1/linux-install-intellij-idea.sh`
+  puts `mkdir -p /opt && \
+        wget -O - https://gist.githubusercontent.com/YuriyGuts/a06b5976ccc8434913b9/raw/409a135d3f5174512b13281cbce6aa29211bed77/linux-install-intellij-idea.sh | bash`
 
   # gradle
   # existCommand gradle
@@ -47,9 +50,9 @@ class Initialise
 
   # atom editor
   # existCommand atom
-  puts `wget https://atom.io/download/deb atom.deb \
-        dpkg -i deb \
-        rm deb`
+  puts `wget -O atom.deb https://atom.io/download/deb && \
+        dpkg -i atom.deb && \
+        rm atom.deb`
 
   # terminator
   # existCommand terminator
@@ -76,8 +79,8 @@ class Initialise
 
   # chrome
   # existCommand google-chrome
-  puts `wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-        dpkg -i google-chrome-stable_current_amd64.deb \
+  puts `wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+        dpkg -i google-chrome-stable_current_amd64.deb && \
         apt-get -y install ttf-unfonts-core`
 
   # tree
@@ -88,15 +91,15 @@ class Initialise
   puts `apt-get -y install vim`
 
   # wps office
-  puts `wget -O wps-office.deb http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_i386.deb \
-        sudo dpkg -i wps-office.deb \
-        sudo apt-get -f install && rm wps-office.deb \
-        wget -O web-office-fonts.deb http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_amd64.deb \
+  puts `wget -O wps-office.deb http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_i386.deb && \
+        sudo dpkg -i wps-office.deb && \
+        sudo apt-get -f install && rm wps-office.deb && \
+        wget -O web-office-fonts.deb http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_amd64.deb && \
         sudo dpkg -i web-office-fonts.deb`
 
   # double commander
-  puts `sudo add-apt-repository ppa:alexx2000/doublecmd \
-        sudo apt-get update \
+  puts `sudo add-apt-repository ppa:alexx2000/doublecmd && \
+        sudo apt-get update && \
         sudo apt-get install doublecmd-qt`
 
   # redis
@@ -106,7 +109,7 @@ class Initialise
   puts `sudo apt-get install mysql-server mysql-client`
 
   # mysql workbench
-  puts `wget http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.3.7-1ubu1604-amd64.deb \
+  puts `wget http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.3.7-1ubu1604-amd64.deb && \
         dpkg -i mysql-workbench-community-6.3.7-1ubu1604-amd64.deb`
 
   # verify it
