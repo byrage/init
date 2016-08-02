@@ -91,7 +91,7 @@ class Setup
   puts `apt-get -y install vim`
 
   # wps office
-  puts `http://kdl.cc.ksosoft.com/wps-community/download/a21/wps-office_10.1.0.5672~a21_amd64.deb && \
+  puts `wget -O wps-office.deb http://kdl.cc.ksosoft.com/wps-community/download/a21/wps-office_10.1.0.5672~a21_amd64.deb && \
         sudo dpkg -i wps-office.deb && \
         sudo apt-get -f install && rm wps-office.deb && \
         wget -O web-office-fonts.deb http://kdl.cc.ksosoft.com/wps-community/download/fonts/wps-office-fonts_1.0_all.deb && \
