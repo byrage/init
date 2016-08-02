@@ -115,7 +115,7 @@ class Setup
         rm mysql-workbench-community-6.3.7-1ubu1604-amd64.deb`
 
   # gitkraken
-  puts `wget -O gitkraken.deb https://www.gitkraken.com/download/linux-deb && \
+  puts `wget -O gitkraken.deb https://release.gitkraken.com/linux/gitkraken-amd64.deb && \
         dpkg -i gitkraken.deb && \
         rm gitkraken.deb`
 
