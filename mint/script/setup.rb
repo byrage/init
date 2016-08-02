@@ -91,11 +91,12 @@ class Setup
   puts `apt-get -y install vim`
 
   # wps office
-  puts `wget -O wps-office.deb http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_i386.deb && \
+  puts `http://kdl.cc.ksosoft.com/wps-community/download/a21/wps-office_10.1.0.5672~a21_amd64.deb && \
         sudo dpkg -i wps-office.deb && \
         sudo apt-get -f install && rm wps-office.deb && \
-        wget -O web-office-fonts.deb http://kdl.cc.ksosoft.com/wps-community/download/a20/wps-office_10.1.0.5444~a20_amd64.deb && \
-        sudo dpkg -i web-office-fonts.deb`
+        wget -O web-office-fonts.deb http://kdl.cc.ksosoft.com/wps-community/download/fonts/wps-office-fonts_1.0_all.deb && \
+        sudo dpkg -i web-office-fonts.deb && \
+        rm *office*.deb`
 
   # double commander
   puts `sudo add-apt-repository ppa:alexx2000/doublecmd && \
@@ -110,7 +111,13 @@ class Setup
 
   # mysql workbench
   puts `wget http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.3.7-1ubu1604-amd64.deb && \
-        dpkg -i mysql-workbench-community-6.3.7-1ubu1604-amd64.deb`
+        dpkg -i mysql-workbench-community-6.3.7-1ubu1604-amd64.deb && \
+        rm mysql-workbench-community-6.3.7-1ubu1604-amd64.deb`
+
+  # gitkraken
+  puts `wget -O gitkraken.deb https://www.gitkraken.com/download/linux-deb && \
+        dpkg -i gitkraken.deb && \
+        rm gitkraken.deb`
 
   # verify it
   puts `ruby verify.rb`

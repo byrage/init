@@ -65,6 +65,9 @@ class Verify
   # mysql workbench
   verifyInstallation 'mysql-workbench'
 
+  # gitkraken
+  verifyInstallation 'gitkraken'
+
   # Korean input method
   puts `echo '\nUIM' | tee -a "#{@log}"`
   puts `dpkg -l | grep uim | tee -a "#{@log}"`
