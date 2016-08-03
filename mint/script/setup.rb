@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 class Setup
 
-  # TODO : make method
+  # TODO : make method [apt-install, wget and dpkg set]
   # echo "installing {package} ..."
 
   # use mirror
@@ -106,8 +106,14 @@ class Setup
   # redis
   puts `sudo apt-get install redis-server`
 
-  # mysql
-  puts `sudo apt-get install mysql-server mysql-client`
+  # mysql-client
+  puts `sudo apt-get install mysql-client`
+
+  # mysql-server
+  MYSQL_PASSWORD='root'
+  puts `echo 'mysql-server-5.5 mysql-server/root_password password "#{MYSQL_PASSWORD}"' | debconf-set-selections && \
+        echo 'mysql-server-5.5 mysql-server/root_password_again password "#{MYSQL_PASSWORD}"' | debconf-set-selections && \
+        apt-get -y install mysql-server-5.5`
 
   # mysql workbench
   puts `wget http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.3.7-1ubu1604-amd64.deb && \
