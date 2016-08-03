@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 class Customize
 
+  #TODO : 사용자 권한으로 실행하면 copy가 권한문제로 안되고.. root 권한으로 실행하면 git alias가 root로 들어가버림. 현재는 사용자 1번, 루트 1번으로 실행하면 되긴되는데 고쳐야함.
+
   require 'fileutils'
 
   def self.makeDirectoryIfNotExists(directory)
