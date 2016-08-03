@@ -1,129 +1,157 @@
 #!/usr/bin/env ruby
 class Setup
 
-  # TODO : make method [apt-install, wget and dpkg set]
-  # echo "installing {package} ..."
+  @skip=nil
+  @continue=' && \ '
+  @profile = '/etc/profile'
+
+  def self.tryingMessage(package)
+    puts `echo '\nInstalling #{package} ... \n\n\n'`
+  end
+
+  def self.addRepository(ppa, continue=@skip)
+    puts `add-apt-repository -y ppa:#{ppa} #{continue}`
+  end
+
+  def self.aptUpdate(continue=@skip)
+    puts `apt-get update #{continue}`
+  end
+
+  def self.aptInstall(package, continue=@skip)
+    puts `apt-get -y install #{package} #{continue}`
+  end
+
+  def self.aptFixBrokenInstall(continue=@skip)
+    puts `apt-get -f install #{continue}`
+  end
+
+  def self.wgetDownload(fileName, sourceUrl, continue=@skip)
+    puts `wget -O #{fileName} #{sourceUrl} #{continue}`
+  end
+
+  def self.wgetRun(sourceUrl, continue=@skip)
+    puts `wget -O - #{sourceUrl} | bash #{continue}`
+  end
+
+  def self.dpkgInstall(debName, continue=@skip)
+    puts `dpkg -i #{debName} #{continue}`
+  end
+
+  def self.rm(fileName, continue=@skip)
+    puts `rm #{fileName} #{continue}`
+  end
+
+  def self.exportInProfile(homeName, content, continue=@skip)
+    puts `echo 'export #{homeName}=#{content}' >> #{@profile} #{continue}`
+  end
 
   # use mirror
   puts `perl -pi -e "s/packages.linuxmint.com/ftp.kaist.ac.kr\/linuxmint/g" /etc/apt/sources.list.d/official-package-repositories.list`
   puts `perl -pi -e "s/archive.ubuntu.com/ftp.daum.net/g" /etc/apt/sources.list.d/official-package-repositories.list`
 
-  puts `apt-get update`
+  aptUpdate
   puts `apt-get -y -o Dpkg::Options::= "--force-confdef" -o Dpkg::Options::= "--force-confold" upgrade`
 
   # Korean input method
-  puts `apt-get -y install uim uim-byeoru`
+  aptInstall 'uim uim-byeoru'
 
   # basic
-  # existCommand curl
-  puts `apt-get -y install curl`
+  aptInstall 'curl'
 
   # git
-  # existCommand git
-  puts `apt-get -y install git git-flow`
+  aptInstall 'git git-flow'
 
   # java 8
   puts `[ -d "/usr/lib/jvm/java-8-oracle" ] || (\
-        echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-        add-apt-repository -y ppa:webupd8team/java && \
-        apt-get update && \
-        apt-get install -y oracle-java8-installer oracle-java8-set-default && \
-        echo 'export JAVA_HOME=/usr/lib/jvm/java-8-oracle/' >> /etc/profile)`
+        echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \ `
+  addRepository 'webup8team/java', @continue
+  aptUpdate @continue
+  aptInstall 'oracle-java8-installer oracle-java8-set-default', @continue
+  exportInProfile 'JAVA_HOME', '/usr/lib/jvm/java-8-oracle/', ')'
 
   # maven
-  # existCommand mvn
-  puts `apt-add-repository -y ppa:andrei-pozolotin/maven3 && \
-        apt-get update && \
-        apt install maven3`
+  addRepository 'andrei-pozolotin/maven3', @continue
+  aptUpdate @continue
+  aptInstall 'maven3'
 
   # intelliJ
-  # existCommand idea
-  puts `mkdir -p /opt && \
-        wget -O - https://gist.githubusercontent.com/YuriyGuts/a06b5976ccc8434913b9/raw/409a135d3f5174512b13281cbce6aa29211bed77/linux-install-intellij-idea.sh | bash`
+  puts `mkdir -p /opt && \ `
+  wgetRun 'https://gist.githubusercontent.com/YuriyGuts/a06b5976ccc8434913b9/raw/409a135d3f5174512b13281cbce6aa29211bed77/linux-install-intellij-idea.sh'
 
   # gradle
-  # existCommand gradle
-  puts `add-apt-repository -y ppa:cwchien/gradle && \
-        apt-get update && \
-        apt-get -y install gradle && \
-        echo 'export GRADLE_HOME=/usr/lib/gradle/default' >> /etc/profile`
+  addRepository 'cwchien/gradle', @continue
+  aptUpdate @continue
+  aptInstall 'gradle', @continue
+  exportInProfile 'GRADLE_HOME', '/usr/lib/gradle/default'
 
   # atom editor
-  # existCommand atom
-  puts `wget -O atom.deb https://atom.io/download/deb && \
-        dpkg -i atom.deb && \
-        rm atom.deb`
+  wgetDownload 'atom.deb', 'https://atom.io/download/deb', @continue
+  dpkgInstall 'atom.deb', @continue
+  rm 'atom.deb'
 
   # terminator
-  # existCommand terminator
-  puts `apt-get -y install terminator`
+  aptInstall 'terminator'
 
   # english dictionary
-  # existCommand dict
-  puts `apt-get -y install dict dictd dict-gcide dict-wn dict-devil espeak`
+  aptInstall 'dict dictd dict-gcide dict-wn dict-devil espeak'
 
   # docker
-  # existCommand docker
-  puts `apt-get -y install docker.io`
+  aptInstall 'docker.io'
 
   # nodejs, npm
-  # existCommand npm
-  puts `apt-get -y install nodejs npm`
+  aptInstall 'nodejs npm'
 
   # virtual box
-  # existCommand vboxmanage
-  puts `echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" > /etc/apt/sources.list.d/virtualbox.list && \
-        wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add - && \
-        apt-get update && \
-        apt-get -y install virtualbox-5.0`
+  puts `echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" > /etc/ apt/sources.list.d/virtualbox.list && \
+        wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add - && \ `
+  aptUpdate @continue
+  aptInstall 'virtualbox-5.0'
 
   # chrome
-  # existCommand google-chrome
-  puts `wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-        dpkg -i google-chrome-stable_current_amd64.deb && \
-        apt-get -y install ttf-unfonts-core`
+  wgetDownload 'chrome.deb', 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb', @continue
+  dpkgInstall 'chrome.deb', @continue
+  aptInstall 'ttf-unfonts-core'
 
   # tree
-  # existCommand tree
-  puts `apt-get -y install tree`
+  aptInstall 'tree'
 
   # vim
-  puts `apt-get -y install vim`
+  aptInstall 'vim'
 
   # wps office
-  puts `wget -O wps-office.deb http://kdl.cc.ksosoft.com/wps-community/download/a21/wps-office_10.1.0.5672~a21_amd64.deb && \
-        sudo dpkg -i wps-office.deb && \
-        sudo apt-get -f install && rm wps-office.deb && \
-        wget -O web-office-fonts.deb http://kdl.cc.ksosoft.com/wps-community/download/fonts/wps-office-fonts_1.0_all.deb && \
-        sudo dpkg -i web-office-fonts.deb && \
-        rm *office*.deb`
+  wgetDownload 'wps-office.deb', 'http://kdl.cc.ksosoft.com/wps-community/download/a21/wps-office_10.1.0.5672~a21_amd64.deb', @continue
+  dpkgInstall 'wps-office.deb', @continue
+  aptFixBrokenInstall @continue
+  wgetDownload 'web-office-fonts.deb', 'http://kdl.cc.ksosoft.com/wps-community/download/fonts/wps-office-fonts_1.0_all.deb', @continue
+  dpkgInstall 'web-office-fonts.deb', @continue
+  rm '*office*.deb'
 
   # double commander
-  puts `sudo add-apt-repository ppa:alexx2000/doublecmd && \
-        sudo apt-get update && \
-        sudo apt-get install doublecmd-qt`
+  addRepository 'alexx2000/doublecmd', @continue
+  aptUpdate @continue
+  aptInstall 'doublecmd-qt'
 
   # redis
-  puts `sudo apt-get install redis-server`
+  aptInstall 'redis-server'
 
   # mysql-client
-  puts `sudo apt-get install mysql-client`
+  aptInstall 'mysql-client'
 
   # mysql-server
   MYSQL_PASSWORD='root'
   puts `echo 'mysql-server-5.5 mysql-server/root_password password "#{MYSQL_PASSWORD}"' | debconf-set-selections && \
-        echo 'mysql-server-5.5 mysql-server/root_password_again password "#{MYSQL_PASSWORD}"' | debconf-set-selections && \
-        apt-get -y install mysql-server-5.5`
+        echo 'mysql-server-5.5 mysql-server/root_password_again password "#{MYSQL_PASSWORD}"' | debconf-set-selections && \ `
+  aptInstall 'mysql-server-5.5'
 
   # mysql workbench
-  puts `wget http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.3.7-1ubu1604-amd64.deb && \
-        dpkg -i mysql-workbench-community-6.3.7-1ubu1604-amd64.deb && \
-        rm mysql-workbench-community-6.3.7-1ubu1604-amd64.deb`
+  wgetDownload 'mysql-workbench.deb', 'http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.3.7-1ubu1604-amd64.deb', @continue
+  dpkgInstall 'mysql-workbench.deb', @continue
+  rm 'mysql-workbench.deb'
 
   # gitkraken
-  puts `wget -O gitkraken.deb https://release.gitkraken.com/linux/gitkraken-amd64.deb && \
-        dpkg -i gitkraken.deb && \
-        rm gitkraken.deb`
+  wgetDownload 'gitkraken.deb', 'https://release.gitkraken.com/linux/gitkraken-amd64.deb', @continue
+  dpkgInstall 'gitkraken.deb', @continue
+  rm 'gitkraken.deb'
 
   # verify it
   puts `ruby verify.rb`
