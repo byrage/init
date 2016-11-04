@@ -1,52 +1,67 @@
 [global_config]
+  handle_size = 1
   suppress_multiple_term_dialog = True
+  title_font = Bitstream Vera Sans Mono 10
   title_inactive_bg_color = "#cdcdcd"
 [keybindings]
-[profiles]
-  [[default]]
-    background_image = None
-    foreground_color = "#2fb22f"
+  line_down = <Primary><Shift>Down
+  line_up = <Primary><Shift>Up
+  move_tab_left = None
+  move_tab_right = None
+  page_down_half = <Primary><Shift>Page_Down
+  page_up_half = <Primary><Shift>Page_Up
+  resize_down = None
+  resize_left = <Primary><Shift>Left
+  resize_up = None
 [layouts]
   [[default]]
     [[[child0]]]
-      position = 1920:0
-      type = Window
       order = 0
       parent = ""
+      position = 1920:0
       size = 1920, 1053
+      type = Window
     [[[child1]]]
-      position = 960
-      type = HPaned
       order = 0
       parent = child0
+      position = 960
+      type = HPaned
     [[[child2]]]
-      position = 526
-      type = VPaned
       order = 0
       parent = child1
+      position = 526
+      type = VPaned
     [[[child5]]]
-      position = 526
-      type = VPaned
       order = 1
       parent = child1
+      position = 526
+      type = VPaned
     [[[terminal3]]]
-      profile = default
-      type = Terminal
       order = 0
       parent = child2
+      profile = default
+      type = Terminal
     [[[terminal4]]]
-      profile = default
-      type = Terminal
       order = 1
       parent = child2
-    [[[terminal7]]]
       profile = default
       type = Terminal
-      order = 1
-      parent = child5
     [[[terminal6]]]
-      profile = default
-      type = Terminal
       order = 0
       parent = child5
+      profile = default
+      type = Terminal
+    [[[terminal7]]]
+      order = 1
+      parent = child5
+      profile = default
+      type = Terminal
 [plugins]
+[profiles]
+  [[default]]
+    background_image = None
+    font = Bitstream Vera Sans Mono 10
+    foreground_color = "#2fb22f"
+    login_shell = True
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    use_system_font = False

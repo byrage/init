@@ -5,3 +5,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lla='ls -lAFh'
 alias tailF='tail -F'
+
+# Custom Aliases
+alias music='~/Music'
+alias clip='xclip -selection clpboard'
