@@ -1,10 +1,10 @@
-#!/usr/bin/env ruby
 class Setup
 
   @skip=nil
   @continue=' && \ '
   @profile = '/etc/profile'
 
+  # define methods
   def self.tryingMessage(package)
     puts `echo '\nInstalling #{package} ... \n\n\n'`
   end
@@ -42,13 +42,20 @@ class Setup
   end
 
   def self.exportInProfile(homeName, content, continue=@skip)
-    puts `echo 'export #{homeName}=#{content}' >> #{@profile} #{continue}`
+    if ENV["#{homeName}"] == nil
+      puts `echo 'export #{homeName}=#{content}' >> #{@profile} #{continue}`
+    end
+  end
+
+  def self.sourceProfile
+    system("/bin/bash -c 'source #{@profile}'")
   end
 
   # use mirror
   puts `perl -pi -e "s/packages.linuxmint.com/ftp.kaist.ac.kr\/linuxmint/g" /etc/apt/sources.list.d/official-package-repositories.list`
   puts `perl -pi -e "s/archive.ubuntu.com/ftp.daum.net/g" /etc/apt/sources.list.d/official-package-repositories.list`
 
+  # update
   aptUpdate
   puts `apt-get -y -o Dpkg::Options::= "--force-confdef" -o Dpkg::Options::= "--force-confold" upgrade`
 
@@ -57,32 +64,27 @@ class Setup
 
   # basic
   aptInstall 'curl'
+  aptInstall 'tree'
+  aptInstall 'vim'
 
   # git
   aptInstall 'git git-flow'
 
   # java 8
-  puts `[ -d "/usr/lib/jvm/java-8-oracle" ] || (\
-        echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \ `
-  addRepository 'webup8team/java', @continue
+  puts `echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections`
+  addRepository 'webupd8team/java', @continue
   aptUpdate @continue
-  aptInstall 'oracle-java8-installer oracle-java8-set-default', @continue
-  exportInProfile 'JAVA_HOME', '/usr/lib/jvm/java-8-oracle/', ')'
-
+  aptInstall 'oracle-java8-installer oracle-java8-set-default'
+  exportInProfile 'JAVA_HOME', '/usr/lib/jvm/java-8-oracle/'
+  sourceProfile
+  
   # maven
-  addRepository 'andrei-pozolotin/maven3', @continue
-  aptUpdate @continue
-  aptInstall 'maven3'
+  aptInstall 'maven'
 
-  # intelliJ
-  puts `mkdir -p /opt && \ `
-  wgetRun 'https://gist.githubusercontent.com/YuriyGuts/a06b5976ccc8434913b9/raw/409a135d3f5174512b13281cbce6aa29211bed77/linux-install-intellij-idea.sh'
-
-  # gradle
+  # gradle v2.14
   addRepository 'cwchien/gradle', @continue
   aptUpdate @continue
-  aptInstall 'gradle', @continue
-  exportInProfile 'GRADLE_HOME', '/usr/lib/gradle/default'
+  aptInstall 'gradle-2.14'
 
   # atom editor
   wgetDownload 'atom.deb', 'https://atom.io/download/deb', @continue
@@ -102,21 +104,13 @@ class Setup
   aptInstall 'nodejs npm'
 
   # virtual box
-  puts `echo "deb http://download.virtualbox.org/virtualbox/debian trusty contrib" > /etc/ apt/sources.list.d/virtualbox.list && \
-        wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add - && \ `
-  aptUpdate @continue
-  aptInstall 'virtualbox-5.0'
-
+  wgetDownload 'virtualbox.deb', 'http://download.virtualbox.org/virtualbox/5.1.4/virtualbox-5.1_5.1.4-110228~Ubuntu~xenial_amd64.deb', @continue
+  dpkgInstall 'virtualbox.deb'
+  
   # chrome
   wgetDownload 'chrome.deb', 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb', @continue
   dpkgInstall 'chrome.deb', @continue
   aptInstall 'ttf-unfonts-core'
-
-  # tree
-  aptInstall 'tree'
-
-  # vim
-  aptInstall 'vim'
 
   # wps office
   wgetDownload 'wps-office.deb', 'http://kdl.cc.ksosoft.com/wps-community/download/a21/wps-office_10.1.0.5672~a21_amd64.deb', @continue
@@ -153,7 +147,17 @@ class Setup
   dpkgInstall 'gitkraken.deb', @continue
   rm 'gitkraken.deb'
 
+  # franz
+  wgetDownload 'franz.tgz', 'https://github.com/meetfranz/franz-app/releases/download/4.0.2/Franz-linux-x64-4.0.2.tgz', @continue
+  puts `mkdir /opt/franz && tar -xvzf franz.tgz -C /opt/franz`
+  puts `ln -sf /opt/franz/Franz /usr/local/bin/franz`
+
+  # fixBroken & source
+  aptFixBrokenInstall
+  sourceProfile
+
   # verify it
-  puts `ruby verify.rb`
+  puts `wget -O verify.rb http://git.dreamer.co.kr/snippets/3/raw && \
+        ruby verify.rb`
 
 end

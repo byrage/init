@@ -18,8 +18,8 @@ class Verify
   verifyInstallation 'java'
 
   # maven
-  verifyInstallation 'maven', 'mvn'
-
+  verifyInstallation 'mvn'
+  
   # gradle
   verifyInstallation 'gradle'
 
@@ -67,6 +67,9 @@ class Verify
 
   # gitkraken
   verifyInstallation 'gitkraken'
+
+  # franz
+  verifyInstallation 'franz'
 
   # Korean input method
   puts `echo '\nUIM' | tee -a "#{@log}"`
