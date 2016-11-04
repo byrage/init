@@ -152,6 +152,10 @@ class Setup
   puts `mkdir /opt/franz && tar -xvzf franz.tgz -C /opt/franz`
   puts `ln -sf /opt/franz/Franz /usr/local/bin/franz`
 
+  # screencloud
+  aptInstall 'screencloud'
+  puts `echo 'deb http://download.opensuse.org/repositories/home:/olav-st/xUbuntu_16.04/ /' > /etc/apt/sources.li    st.d/screencloud.list`
+  
   # fixBroken & source
   aptFixBrokenInstall
   sourceProfile

@@ -71,6 +71,9 @@ class Verify
   # franz
   verifyInstallation 'franz'
 
+  # screencloud
+  verifyInstallation 'screencloud'
+
   # Korean input method
   puts `echo '\nUIM' | tee -a "#{@log}"`
   puts `dpkg -l | grep uim | tee -a "#{@log}"`
