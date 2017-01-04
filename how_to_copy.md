@@ -1,5 +1,6 @@
-alias = once, mannual copy
+alias = # TODO : sed
 dconf-setting = dconf dump /org/cinnamon/desktop/keybindings/ > dconf-settings.conf
-autostart = /home/hero/.config/autostart/*
-terminator = /home/hero/.config/terminator/config
-vim = /home/hero/.vimrc
+autostart = ~/.config/autostart/*
+terminator = ~/.config/terminator/config
+vim = ~/.vimrc
+zsh = ~/.zshrc

@@ -155,6 +155,13 @@ class Setup
   # screencloud
   aptInstall 'screencloud'
   puts `echo 'deb http://download.opensuse.org/repositories/home:/olav-st/xUbuntu_16.04/ /' > /etc/apt/sources.li    st.d/screencloud.list`
+
+  # teamviewer
+  aptInstall 'teamviewer'
+
+  # zsh & oh-my-zsh
+  aptInstall 'zsh'
+  puts `curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh`
   
   # fixBroken & source
   aptFixBrokenInstall
