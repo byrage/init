@@ -1,37 +1,49 @@
 # mint-setting-script
 
-this script is to help you through ruby while initialisation is in progress.
-First of all, you must run "apt install ruby-full" command.
+this script is to help you through [ruby](https://www.ruby-lang.org/en/) while initialisation is in progress.
+First of all, you need to install ruby. Just Run `apt install ruby-full`
 
 ## initialise
 
-Use "ruby initialise.rb" to run initialisation script.
+Use `ruby initialise.rb` to run initialisation script.
 
 ## customize
 
-Use "ruby customize.rb" to run customizing script.
+Use `ruby customize.rb` to run customizing script.
 
 ## update settings
 
-alias
-TODO : use sed command in ~/.profile 
+#### alias : 
+```bash
+# TODO : use sed command in ~/.profile 
+```
 
-dconf-setting 
-dconf dump /org/cinnamon/desktop/keybindings/ > ${PROJECT}/settings/dconf/dconf-settings.conf
+#### dconf-setting 
+```bash
+dconf dump /org/cinnamon/desktop/keybindings/ > ${PROJECT_DIR}/settings/dconf/dconf-settings.conf
+```
 
-autostart 
-cp -f ~/.config/autostart/* ${PROJECT}/settings/start ${PROJECT}/settings/startup_applications
+#### autostart 
+```bash
+cp -f ~/.config/autostart/* ${PROJECT_DIR}/settings/startup_applications
+```
 
-terminator 
-cp -f ~/.config/terminator/config ${PROJECT}/settings/terminator
+#### terminator 
+```bash
+cp -f ~/.config/terminator/config ${PROJECT_DIR}/settings/terminator
+```
 
-vim
-cp -f ~/.vimrc ${PROJECT}/settings/vim
+#### vim
+```bash
+cp -f ~/.vimrc ${PROJECT_DIR}/settings/vim
+```
 
-zsh
-cp -f ~/.zshrc ${PROJECT}/settings/zsh
+#### zsh
+```bash
+cp -f ~/.zshrc ${PROJECT_DIR}/settings/zsh
+```
 
-##VERSION
+## VERSION
 
 V0.1 [2016/07/26]
 
