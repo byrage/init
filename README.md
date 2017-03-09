@@ -7,6 +7,7 @@ First of all, you need to install ruby. Just Run `apt install ruby-full`
 ## initialise
 
 Use `ruby initialise.rb` to run initialisation script.
+TODO : describe process setup and verify / change name of initialise.rb
 
 ## customize
 
