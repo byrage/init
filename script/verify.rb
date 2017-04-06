@@ -3,76 +3,82 @@ class Verify
 
   @log = 'verify.log'
 
-  def self.verifyInstallation(package, command=package)
+  def self.verify_installation(package, command=package)
     puts `echo '\n'"#{package.upcase}" | tee -a "#{@log}"`
     puts `type "#{command}" | tee -a "#{@log}"`
   end
 
   # curl
-  verifyInstallation 'curl'
+  verify_installation 'curl'
 
   # git
-  verifyInstallation 'git'
+  verify_installation 'git'
 
   # java 8
-  verifyInstallation 'java'
+  verify_installation 'java'
 
   # maven
-  verifyInstallation 'mvn'
+  verify_installation 'mvn'
   
   # gradle
-  verifyInstallation 'gradle'
+  verify_installation 'gradle'
 
   # atom editor
-  verifyInstallation 'atom'
+  verify_installation 'atom'
 
   # terminator
-  verifyInstallation 'terminator'
+  verify_installation 'terminator'
 
   # english dictionary
-  verifyInstallation 'dict'
+  verify_installation 'dict'
 
   # docker
-  verifyInstallation 'docker'
+  verify_installation 'docker'
 
   # nodejs, npm
-  verifyInstallation 'npm'
+  verify_installation 'npm'
 
   # virtual box
-  verifyInstallation 'virtualbox'
+  verify_installation 'virtualbox'
 
   # chrome
-  verifyInstallation 'chrome', 'google-chrome-stable'
+  verify_installation 'chrome', 'google-chrome-stable'
 
   # tree
-  verifyInstallation 'tree'
+  verify_installation 'tree'
 
   # vim
-  verifyInstallation 'vim'
+  verify_installation 'vim'
 
   # wps office
-  verifyInstallation 'wps office', 'wps'
+  verify_installation 'wps office', 'wps'
 
   # double commander
-  verifyInstallation 'double commander', 'doublecmd'
+  verify_installation 'double commander', 'doublecmd'
 
   # redis
-  verifyInstallation 'redis', 'redis-server'
+  verify_installation 'redis', 'redis-server'
 
   # mysql
-  verifyInstallation 'mysql'
+  verify_installation 'mysql'
 
   # mysql workbench
-  verifyInstallation 'mysql-workbench'
+  verify_installation 'mysql-workbench'
 
   # gitkraken
-  verifyInstallation 'gitkraken'
+  verify_installation 'gitkraken'
 
   # franz
-  verifyInstallation 'franz'
+  verify_installation 'franz'
 
   # screencloud
-  verifyInstallation 'screencloud'
+  verify_installation 'screencloud'
+
+  # clementine
+  verify_installation 'clementine'
+
+  # diffuse
+  verify_installation 'diffuse'
 
   # Korean input method
   puts `echo '\nUIM' | tee -a "#{@log}"`
