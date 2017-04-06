@@ -25,35 +25,34 @@ class Customize
     puts `echo '\nInstalling #{command} ... \n\n\n'`
   end
 
-  print 'input your id : '
-  userId = gets.chomp
-  homeDirectory = '/home/'+userId
-  absolutePath = Dir.pwd
-  myFile =absolutePath.split('/script')[0] + '/customize/'
+  user = `echo $USER`.strip
+  homeDirectory = `echo $HOME`.strip
+  currentPath = Dir.pwd
+  settings =currentPath.split('/script')[0] + '/settings/'
 
   puts 'homeDirectory = '+homeDirectory
-  puts 'myFile = '+myFile
+  puts 'settings = '+settings
 
 
   # set preferred application
   tryingMessage 'set preferred application'
-  autoStart = [myFile + 'startup_applications/.', homeDirectory+'/.config/autostart']
-  copy autoStart[0], autoStart[1]
-  puts `chown -R "#{userId}":"#{userId}" "#{autoStart[1]}"`
+  startupApplications = [settings + 'startup_applications/.', homeDirectory+'/.config/autostart']
+  copy startupApplications[0], startupApplications[1]
+  puts `chown -R "#{user}":"#{user}" "#{startupApplications[1]}"`
 
   # set custom aliases
   tryingMessage 'set custom aliases'
-  aliases = [myFile + 'alias/*', homeDirectory, '/.profile'] # .profile
+  aliases = [settings + 'alias/*', homeDirectory, '/.profile'] # .profile
   catAndAppend aliases[0], aliases[1], aliases[2]
 
   # set vim configuration
   tryingMessage 'set vim configuration'
-  vim = [myFile + '/vim/vimrc', homeDirectory, '/.vimrc'] # .vimrc
+  vim = [settings + '/vim/vimrc', homeDirectory, '/.vimrc'] # .vimrc
   catAndAppend vim[0], vim[1], vim[2]
 
   # set mint shortcut
   tryingMessage 'set mint shortcut'
-  dconf = myFile + '/dconf/dconf-settings.conf'
+  dconf = settings + '/dconf/dconf-settings.conf'
   puts `apt-get -f install`
   puts `apt install dconf-cli`
   puts `dconf load /org/cinnamon/desktop/keybindings/ < "#{dconf}"`
@@ -70,7 +69,7 @@ class Customize
 
   # set terminator configuration
   tryingMessage 'set terminator configuration'
-  terminator = [myFile + '/terminator/config', homeDirectory+'/.config/terminator']
+  terminator = [settings + '/terminator/config', homeDirectory+'/.config/terminator']
   copy terminator[0], terminator[1]
 
 end
