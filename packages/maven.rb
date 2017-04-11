@@ -1,6 +1,6 @@
 require_relative 'package'
 
-class Uim
+class Maven
   include Package
 
   attr_reader :package_name, :repository, :install_command, :verify_name
@@ -8,8 +8,8 @@ class Uim
   def initialize
     @package_name = 'maven'
     @repository = nil
-    @install_command = Package.apt_install('mvn')
-    @verify_name = 'uim'
+    @install_command = apt_install(@package_name)
+    @verify_name = 'mvn'
   end
 
 end

@@ -62,9 +62,6 @@ class Setup
   # docker
   apt_install 'docker.io'
 
-  # nodejs, npm
-  apt_install 'nodejs npm'
-
   # virtual box
   wget_download 'virtualbox.deb', 'http://download.virtualbox.org/virtualbox/5.1.4/virtualbox-5.1_5.1.4-110228~Ubuntu~xenial_amd64.deb', @continue
   dpkg_install 'virtualbox.deb'
@@ -81,11 +78,6 @@ class Setup
   wget_download 'web-office-fonts.deb', 'http://kdl.cc.ksosoft.com/wps-community/download/fonts/wps-office-fonts_1.0_all.deb', @continue
   dpkg_install 'web-office-fonts.deb', @continue
   rm '*office*.deb'
-
-  # double commander
-  add_repository 'alexx2000/doublecmd', @continue
-  apt_update @continue
-  apt_install 'doublecmd-qt'
 
   # redis
   apt_install 'redis-server'

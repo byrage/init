@@ -8,9 +8,8 @@ class Vim
   def initialize
     @package_name = 'vim'
     @repository = nil
-    @install_command = Package.apt_install('vim')
-    @verify_name = 'vim'
-    super(@package_name, @repository, @install_command, @verify_name)
+    @install_command = apt_install(@package_name)
+    @verify_name = @package_name
   end
 
 end

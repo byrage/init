@@ -1,14 +1,14 @@
 require_relative 'package'
 
-class Tree
+class Atom
   include Package
 
   attr_reader :package_name, :repository, :install_command, :verify_name
 
   def initialize
-    @package_name = 'tree'
+    @package_name = 'atom'
     @repository = nil
-    @install_command = apt_install(@package_name)
+    @install_command = wget_download('atom.deb', 'https://atom.io/download/deb', true) + dpkg_install('atom.deb')
     @verify_name = @package_name
   end
 
