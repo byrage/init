@@ -5,60 +5,61 @@ class Customize
 
   require 'fileutils'
 
-  def self.make_directory_if_not_exists(directory)
+  def self.makeDirectoryIfNotExists(directory)
     FileUtils.mkdir_p(directory) unless File.exists?(directory)
     # Same meaning with above line
     # puts `mkdir -p "#{directory}"`
   end
 
   def self.copy(src, dst)
-    make_directory_if_not_exists(dst)
+    makeDirectoryIfNotExists(dst)
     FileUtils.cp_r(src, dst)
   end
 
-  def self.cat_and_append(src, dst, fileName)
-    make_directory_if_not_exists(dst)
+  def self.catAndAppend(src, dst, fileName)
+    makeDirectoryIfNotExists(dst)
     puts `cat #{src} >> #{dst+fileName}`
   end
 
-  def self.print_trying_message(command)
+  def self.tryingMessage(command)
     puts `echo '\nInstalling #{command} ... \n\n\n'`
   end
 
-  user = `echo $USER`.strip
-  homeDirectory = `echo $HOME`.strip
-  currentPath = Dir.pwd
-  settings =currentPath.split('/script')[0] + '/settings/'
+  print 'input your id : '
+  userId = gets.chomp
+  homeDirectory = '/home/'+userId
+  absolutePath = Dir.pwd
+  myFile =absolutePath.split('/script')[0] + '/customize/'
 
   puts 'homeDirectory = '+homeDirectory
-  puts 'settings = '+settings
+  puts 'myFile = '+myFile
 
 
   # set preferred application
-  print_trying_message 'set preferred application'
-  startupApplications = [settings + 'startup_applications/.', homeDirectory+'/.config/autostart']
-  copy startupApplications[0], startupApplications[1]
-  puts `chown -R "#{user}":"#{user}" "#{startupApplications[1]}"`
+  tryingMessage 'set preferred application'
+  autoStart = [myFile + 'startup_applications/.', homeDirectory+'/.config/autostart']
+  copy autoStart[0], autoStart[1]
+  puts `chown -R "#{userId}":"#{userId}" "#{autoStart[1]}"`
 
   # set custom aliases
-  print_trying_message 'set custom aliases'
-  aliases = [settings + 'alias/*', homeDirectory, '/.profile'] # .profile
-  cat_and_append aliases[0], aliases[1], aliases[2]
+  tryingMessage 'set custom aliases'
+  aliases = [myFile + 'alias/*', homeDirectory, '/.profile'] # .profile
+  catAndAppend aliases[0], aliases[1], aliases[2]
 
   # set vim configuration
-  print_trying_message 'set vim configuration'
-  vim = [settings + '/vim/vimrc', homeDirectory, '/.vimrc'] # .vimrc
-  cat_and_append vim[0], vim[1], vim[2]
+  tryingMessage 'set vim configuration'
+  vim = [myFile + '/vim/vimrc', homeDirectory, '/.vimrc'] # .vimrc
+  catAndAppend vim[0], vim[1], vim[2]
 
   # set mint shortcut
-  print_trying_message 'set mint shortcut'
-  dconf = settings + '/dconf/dconf-settings.conf'
+  tryingMessage 'set mint shortcut'
+  dconf = myFile + '/dconf/dconf-settings.conf'
   puts `apt-get -f install`
   puts `apt install dconf-cli`
   puts `dconf load /org/cinnamon/desktop/keybindings/ < "#{dconf}"`
 
   # set git alias
-  print_trying_message 'set git alias'
+  tryingMessage 'set git alias'
   puts `git config --global alias.co 'checkout'`
   puts `git config --global alias.br 'branch -v'`
   puts `git config --global alias.ci 'commit'`
@@ -68,8 +69,8 @@ class Customize
   puts `git config --global alias.last 'log -1 HEAD'`
 
   # set terminator configuration
-  print_trying_message 'set terminator configuration'
-  terminator = [settings + '/terminator/config', homeDirectory+'/.config/terminator']
+  tryingMessage 'set terminator configuration'
+  terminator = [myFile + '/terminator/config', homeDirectory+'/.config/terminator']
   copy terminator[0], terminator[1]
 
 end
