@@ -1,8 +1,8 @@
 # mint-setting-script
 
-this script is to help you through [ruby](https://www.ruby-lang.org/en/) while initialisation is in progress.
+this script is to help you through [Ruby](https://www.ruby-lang.org/en/) while initialisation is in progress.
 
-First of all, you need to install ruby. Just Run `apt install ruby-full`
+First of all, you need to install Ruby. [How to Install Ruby](https://gorails.com/setup/ubuntu/16.04)
 
 ## initialise
 
